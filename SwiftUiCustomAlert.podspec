@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 'It is an simple pod for custom swift ui alert view with simple use just install the pod and start use it'.
                        DESC
 
-  s.homepage         = 'https://github.com/Mustafa Hegy/SwiftUiCustomAlert'
+  s.homepage         = 'https://github.com/mustafahegy/SwiftUiCustomAlert'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Mustafa Hegy' => 'mustafa.hegy94@gmail.com' }
-  s.source           = { :git => 'https://github.com/Mustafa Hegy/SwiftUiCustomAlert.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/mustafahegy/SwiftUiCustomAlert.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '13.0'
