@@ -26,47 +26,39 @@ public struct AlertView: View {
     
     @available(iOS 13.0.0, *)
     public var body: some View {
-        
-        ZStack {
-            RoundedRectangle(cornerRadius: 10) // Rounded background
-                .fill(Color.white)
-                .shadow(radius: 5)
-            VStack {
-                Text(title)
-                    .font(.title)
-                Text(description)
-                    .font(.body)
-                    .padding()
+        GeometryReader { geometry in
+            ZStack {
+                RoundedRectangle(cornerRadius: 12) // Rounded background
+                    .fill(Color.white)
+                    .shadow(radius: 5) // Shadow
+                    .frame(width: geometry.size.width - 60, height: geometry.size.width - 60)
                 
-                HStack {
-                    Button(cancelButtonLabel) {
-                        cancelAction()
-                    }
-                    .frame(height: 40)
-                    .padding()
-                    .background(Color.red)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+                VStack {
+                    Text(title)
+                        .font(.title)
+                    Text(description)
+                        .font(.body)
+                        .padding()
                     
-                    Button(confirmButtonLabel) {
-                        confirmAction()
+                    HStack {
+                        Button(cancelButtonLabel) {
+                            cancelAction()
+                        }
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                        
+                        Button(confirmButtonLabel) {
+                            confirmAction()
+                        }
+                        .padding()
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                     }
-                    .frame(height: 40)
-                    .padding()
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
                 }
             }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(12)
         }
     }
-    
 }
-
-
-//#Preview {
-//    AlertView(title: "title", description: "description of the alert", confirmAction: <#() -> Void#>, cancelAction: <#() -> Void#>)
-//}
