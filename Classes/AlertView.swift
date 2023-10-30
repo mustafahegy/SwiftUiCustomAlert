@@ -14,7 +14,7 @@ public struct AlertView: View {
     public let cancelButtonLabel: String
     public let confirmAction: () -> Void
     public let cancelAction: () -> Void
-    
+
     public init(title: String, description: String, confirmButtonLabel: String, cancelButtonLabel: String, confirmAction: @escaping () -> Void, cancelAction: @escaping () -> Void) {
         self.title = title
         self.description = description
@@ -23,47 +23,50 @@ public struct AlertView: View {
         self.confirmAction = confirmAction
         self.cancelAction = cancelAction
     }
-    
+
     @available(iOS 13.0.0, *)
     public var body: some View {
-        GeometryReader { geometry in
-            ZStack {
+        ZStack {
+            Color.black
+                .opacity(0.3)
+                .edgesIgnoringSafeArea(.all)
+
+            VStack {
+                Spacer()
                 RoundedRectangle(cornerRadius: 12) // Rounded background
                     .fill(Color.white)
                     .shadow(radius: 5) // Shadow
-                    .frame(width: geometry.size.width - 60, height: geometry.size.width - 60)
-                    .alignmentGuide(HorizontalAlignment.center) { d in
-                        d[HorizontalAlignment.center]
-                    }
-                    .alignmentGuide(VerticalAlignment.center) { d in
-                        d[VerticalAlignment.center]
-                    }
-                VStack {
-                    Text(title)
-                        .font(.title)
-                    Text(description)
-                        .font(.body)
-                        .padding()
-                    
-                    HStack {
-                        Button(cancelButtonLabel) {
-                            cancelAction()
+                    .frame(width: UIScreen.main.bounds.width - 60, height: UIScreen.main.bounds.width - 60)
+                    .overlay(
+                        VStack {
+                            Text(title)
+                                .font(.title)
+                            Text(description)
+                                .font(.body)
+                                .padding()
+
+                            HStack {
+                                Button(cancelButtonLabel) {
+                                    cancelAction()
+                                }
+                                .padding()
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+
+                                Button(confirmButtonLabel) {
+                                    confirmAction()
+                                }
+                                .padding()
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                            }
                         }
-                        .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                        
-                        Button(confirmButtonLabel) {
-                            confirmAction()
-                        }
-                        .padding()
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                    }
-                }
+                    )
+                Spacer()
             }
+            .position(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
         }
     }
 }
