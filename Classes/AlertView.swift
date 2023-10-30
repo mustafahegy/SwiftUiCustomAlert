@@ -32,7 +32,12 @@ public struct AlertView: View {
                     .fill(Color.white)
                     .shadow(radius: 5) // Shadow
                     .frame(width: geometry.size.width - 60, height: geometry.size.width - 60)
-                
+                    .alignmentGuide(HorizontalAlignment.center) { d in
+                        d[HorizontalAlignment.center]
+                    }
+                    .alignmentGuide(VerticalAlignment.center) { d in
+                        d[VerticalAlignment.center]
+                    }
                 VStack {
                     Text(title)
                         .font(.title)
