@@ -35,8 +35,8 @@ public struct AlertView: View {
                 Spacer()
                 RoundedRectangle(cornerRadius: 12) // Rounded background
                     .fill(Color.white)
-                    .shadow(radius: 5) // Shadow
                     .frame(width: UIScreen.main.bounds.width - 60, height: UIScreen.main.bounds.width - 60)
+                    .shadow(radius: 5) // Shadow
                     .overlay(
                         VStack {
                             Text(title)
