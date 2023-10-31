@@ -14,7 +14,7 @@ public struct AlertView: View {
     public let cancelButtonLabel: String
     public let confirmAction: () -> Void
     public let cancelAction: () -> Void
-
+    
     public init(title: String, description: String, confirmButtonLabel: String, cancelButtonLabel: String, confirmAction: @escaping () -> Void, cancelAction: @escaping () -> Void) {
         self.title = title
         self.description = description
@@ -23,20 +23,19 @@ public struct AlertView: View {
         self.confirmAction = confirmAction
         self.cancelAction = cancelAction
     }
-
+    
     @available(iOS 13.0.0, *)
     public var body: some View {
         ZStack {
             Color.black
                 .opacity(0.3)
                 .edgesIgnoringSafeArea(.all)
-
+            
             VStack {
                 Spacer()
                 RoundedRectangle(cornerRadius: 12) // Rounded background
                     .fill(Color.white)
                     .frame(width: UIScreen.main.bounds.width - 60, height: UIScreen.main.bounds.width - 60)
-                    .shadow(radius: 5) // Shadow
                     .overlay(
                         VStack {
                             Text(title)
@@ -44,7 +43,7 @@ public struct AlertView: View {
                             Text(description)
                                 .font(.body)
                                 .padding()
-
+                            
                             HStack {
                                 Button(cancelButtonLabel) {
                                     cancelAction()
@@ -53,7 +52,7 @@ public struct AlertView: View {
                                 .background(Color.red)
                                 .foregroundColor(.white)
                                 .cornerRadius(8)
-
+                                
                                 Button(confirmButtonLabel) {
                                     confirmAction()
                                 }
@@ -64,6 +63,7 @@ public struct AlertView: View {
                             }
                         }
                     )
+                    .shadow(radius: 5) // Shadow
                 Spacer()
             }
             .position(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
